@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+<!--DOCTYPE html
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to Firebase Hosting</title>
 
-    <!-- update the version number as needed -->
+     update the version number as needed 
     <script defer src="/__/firebase/8.2.6/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
+     include only the Firebase features as you need 
     <script defer src="/__/firebase/8.2.6/firebase-auth.js"></script>
     <script defer src="/__/firebase/8.2.6/firebase-database.js"></script>
     <script defer src="/__/firebase/8.2.6/firebase-firestore.js"></script>
@@ -17,10 +17,10 @@
     <script defer src="/__/firebase/8.2.6/firebase-analytics.js"></script>
     <script defer src="/__/firebase/8.2.6/firebase-remote-config.js"></script>
     <script defer src="/__/firebase/8.2.6/firebase-performance.js"></script>
-    <!-- 
+
       initialize the SDK after all desired features are loaded, set useEmulator to false
       to avoid connecting the SDK to running emulators.
-    -->
+    
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
     <style media="screen">
@@ -86,4 +86,77 @@
       });
     </script>
   </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+</head>
+<body>
+  
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCSjvdOHnxGcritY9tWh_eeMwr3O4lkl5s",
+    authDomain: "roommatchdb.firebaseapp.com",
+    projectId: "roommatchdb",
+    storageBucket: "roommatchdb.appspot.com",
+    messagingSenderId: "118545415683",
+    appId: "1:118545415683:web:da66f84fdf8e3c1e919836",
+    measurementId: "G-HZP0HSX96R"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  // Google authentication code
+  // googleSignIn=()=>{
+  //     base_provider = new firebase.auth.GoogleAuthProvider()
+  //     firebase.auth().signInWithPopup(base_provider).then(function(result){
+  //     console.log(result)
+  //     console.log("Success.. Linked Google Account")
+  //     }).catch(function(err){
+  //       console.log(err)
+  //       console.log("Failed")
+  //     })
+  //     }
+
+  // Email Password Login
+  registerUser=()=>{
+    user_email = document.getElementById("email").value
+    user_pwd = document.getElementById("pwd").valuefirebase.auth().createdUserWithEmailAndPassword(user_email, user_pwd).then(function(resp){
+      console.log(resp)
+      alert("user created successfully")
+
+    }).catch(function(err){
+      console.log(err)
+      console.log(err.message)
+    })
+  }
+</script>
+<!-- <script src="app.js" defer> </script> -->
+<!-- </head> -->
+<!-- <body> -->
+  <h1> Roommatch </h1>
+    <!-- <button onclick = "googleSignin(email, password)">
+      Sign Up
+    </button> -->
+    <input type="email" name="email" id="email" placeholder="E-mail">
+    <input type="password" name="pwd" id="pwd" placeholder="Password">
+    <button onclick="registerUser()"><Register</button>
+</body>
 </html>
+    
