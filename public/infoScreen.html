@@ -15,6 +15,25 @@
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
 </head>
 <body>
+  <head>
+    <title>Basic Info Screen</title>
+  </head>
+  <body>
+    <p>Tell us about yourself!</p>
+
+    <div id="infoQuestions">
+      <input type="text" name="name" placeholder="Name(First and Last)" id="name">
+      <input type="number" name="age" placeholder="Age" id="age">
+      <input type="text" name="major" placeholder="Major" id="major">
+      <input type="text" name="job" placeholder="Job Role" id="job">
+      <input type="text" name="company" placeholder="Company" id="company">
+      <input type="text" name="location" placeholder="Location" id="location">
+      <input type="text" name="school" placeholder="School" id="school">
+      <input type="text" name="hometown" placeholder="Hometown" id="hometown">
+      <input type="text" name="bio" placeholder="Bio(optional)" id="bio">
+
+      <button id="AddDatabtn">Tell us More!</button>
+    </div>
   
 <script>
   // Your web app's Firebase configuration
@@ -30,12 +49,46 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+  var auth = firebase.auth();
+
+  document.getElementById('AddDatabtn').addEventListener('click', addData)
+
+  function addData(){
+    var userUid = auth.currentUser.uid;
+    var db = firebase.firestore();
+
+    let name = document.getElementById('name').value
+    let age = document.getElementById('age').value
+    let major = document.getElementById('major').value
+    let job = document.getElementById('job').value
+    let company = document.getElementById('company').value
+    let location = document.getElementById('location').value
+    let school = document.getElementById('school').value
+    let hometown = document.getElementById('hometown').value
+    let bio = document.getElementById('bio').value
+
+    let obj = {
+      userUid: userUid,
+      name: name,
+      age: age,
+      major: major,
+      job: job,
+      company: company,
+      location: location,
+      school: school,
+      hometown: hometown,
+      bio: bio
+    }
+
+    db.collection('usersInfo').add(obj).then(doc=>{
+      console.log(doc.id)
+    }).catch(e=>{
+      console.log(e)
+    })
+
+  }
 </script>
-<head>
-    <title>Basic Info Screen</title>
-</head>
-<body>
-    <p>Tell us about yourself!<p>
+
+
 </body>
 </html>

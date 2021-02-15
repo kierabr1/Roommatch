@@ -122,7 +122,6 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  //document.getElementById("signUp").addEventListener("click", signUpUser)
 
   function signUpUser(){
     let email = document.getElementById('email').value
@@ -130,58 +129,31 @@
 
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(e=>{
       console.log(e)
+      document.getElementById('ErrorMsg').innerHTML = e;
     })
   }
 
 </script>
+
 <h1> Roommatch </h1>
-<!-- <button onclick = "googleSignin(email, password)">
-  Sign Up
-</button> -->
 <!-- Registration Only Input--> 
 <div id="signUp">
   <input type="email" name="email" placeholder="E-mail" id="email">
   <input type="password" name="pwd" placeholder="Password" id="password">
-  <!-- <a href="infoScreen.html"> --> <!-- Registration only button; Links to registration questions.--> 
+  <!-- Registration only button; Links to registration questions.--> 
+  <a href="infoScreen.html"> 
   <button onclick="signUpUser()">Register</button>
-  <!-- </a>-->
+  </a>
 </div>
-  <!-- 
-  firebase.analytics();
+<div>
+  <span id="ErrorMsg"></span>
+</div>
 
-  // Google authentication code
-  // googleSignIn=()=>{
-  //     base_provider = new firebase.auth.GoogleAuthProvider()
-  //     firebase.auth().signInWithPopup(base_provider).then(function(result){
-  //     console.log(result)
-  //     console.log("Success.. Linked Google Account")
-  //     }).catch(function(err){
-  //       console.log(err)
-  //       console.log("Failed")
-  //     })
-  //     }
+<!-- TO DO: -Log-In Functionality. +Error Msgs for: wrong email/pswd
+            -Login *only* with .edu email.
+            -*Google Sign In/Up. 
+            -Sign Out-->
 
-  // Email Password Login
-  registerUser=()=>{
-    user_email = document.getElementById("email").value
-    user_pwd = document.getElementById("pwd").valuefirebase.auth().createUserWithEmailAndPassword(user_email, user_pwd).then(function(resp){
-      console.log(resp)
-      function printFollowers(followersSum) {
-        document.write(followersSum);
-      }
-      printFollowers(prompt("Works"));
-      alert("user created successfully")
-
-    }).catch(function(err){
-      console.log(err)
-      console.log(err.message)
-      function printFollowers(followersSum) {
-        document.write(followersSum);
-      }
-      printFollowers(prompt("Dont Works"));
-    })
-  }
--->
 
 <!-- <script src="app.js" defer> </script> -->
 <!-- </head> -->
