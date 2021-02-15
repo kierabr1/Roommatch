@@ -106,6 +106,8 @@
 </head>
 <body>
   
+  <!-- TODO: User Login Button/Form-->
+  
 <script>
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -120,6 +122,31 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  //document.getElementById("signUp").addEventListener("click", signUpUser)
+
+  function signUpUser(){
+    let email = document.getElementById('email').value
+    let password = document.getElementById('password').value
+
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(e=>{
+      console.log(e)
+    })
+  }
+
+</script>
+<h1> Roommatch </h1>
+<!-- <button onclick = "googleSignin(email, password)">
+  Sign Up
+</button> -->
+<!-- Registration Only Input--> 
+<div id="signUp">
+  <input type="email" name="email" placeholder="E-mail" id="email">
+  <input type="password" name="pwd" placeholder="Password" id="password">
+  <!-- <a href="infoScreen.html"> --> <!-- Registration only button; Links to registration questions.--> 
+  <button onclick="signUpUser()">Register</button>
+  <!-- </a>-->
+</div>
+  <!-- 
   firebase.analytics();
 
   // Google authentication code
@@ -154,22 +181,11 @@
       printFollowers(prompt("Dont Works"));
     })
   }
-</script>
+-->
+
 <!-- <script src="app.js" defer> </script> -->
 <!-- </head> -->
 <!-- <body> -->
-  <h1> Roommatch </h1>
-    <!-- <button onclick = "googleSignin(email, password)">
-      Sign Up
-    </button> -->
-    <!-- Registration Only Input--> 
-    <input type="email" name="email" id="email" placeholder="E-mail">
-    <input type="password" name="pwd" id="pwd" placeholder="Password">
-    <!-- <a href="infoScreen.html"> --> <!-- Registration only button; Links to registration questions.--> 
-    <button onclick="registerUser()">Register</button>
-    <!-- </a>-->
-
-    <!-- TODO: User Login Button/Form-->
 </body>
 </html>
     
