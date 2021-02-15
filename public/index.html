@@ -137,13 +137,21 @@
   // Email Password Login
   registerUser=()=>{
     user_email = document.getElementById("email").value
-    user_pwd = document.getElementById("pwd").valuefirebase.auth().createdUserWithEmailAndPassword(user_email, user_pwd).then(function(resp){
+    user_pwd = document.getElementById("pwd").valuefirebase.auth().createUserWithEmailAndPassword(user_email, user_pwd).then(function(resp){
       console.log(resp)
+      function printFollowers(followersSum) {
+        document.write(followersSum);
+      }
+      printFollowers(prompt("Works"));
       alert("user created successfully")
 
     }).catch(function(err){
       console.log(err)
       console.log(err.message)
+      function printFollowers(followersSum) {
+        document.write(followersSum);
+      }
+      printFollowers(prompt("Dont Works"));
     })
   }
 </script>
@@ -154,9 +162,14 @@
     <!-- <button onclick = "googleSignin(email, password)">
       Sign Up
     </button> -->
+    <!-- Registration Only Input--> 
     <input type="email" name="email" id="email" placeholder="E-mail">
     <input type="password" name="pwd" id="pwd" placeholder="Password">
-    <button onclick="registerUser()"><Register</button>
+    <!-- <a href="infoScreen.html"> --> <!-- Registration only button; Links to registration questions.--> 
+    <button onclick="registerUser()">Register</button>
+    <!-- </a>-->
+
+    <!-- TODO: User Login Button/Form-->
 </body>
 </html>
     
