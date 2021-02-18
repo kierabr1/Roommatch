@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCSjvdOHnxGcritY9tWh_eeMwr3O4lkl5s",
+    authDomain: "roommatchdb.firebaseapp.com",
+    projectId: "roommatchdb",
+    storageBucket: "roommatchdb.appspot.com",
+    messagingSenderId: "118545415683",
+    appId: "1:118545415683:web:da66f84fdf8e3c1e919836",
+    measurementId: "G-HZP0HSX96R"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+<script src="app.js" defer> </script>
+
+</head>
+<body style = "background-color: white;">
+    <center><h1 style="color: maroon;"> Tell us About Yourself! </h1></center>
+
+
+<form>
+    <br>
+  <center><label for ="Full Name"><text style="color: black;"></style>Full Name:</label><br>
+  <input type="text" id="FullName" name="FullName"><br></center>
+  <br>
+  <br>
+  <center><label for ="Age"><text style="color: black;"></style>Age:</label><br>
+  <input type="text" id="Age" name="Age"><br></center>
+  <br>
+  <br>
+  <center><label for ="Major"><text style="color: black;"></style>Major:</label><br>
+    <input type="text" id="Major" name="Major"><br></center>
+    <br>
+    <br>
+  <center><label for ="Role"><text style="color: black;"></style>Role:</label><br>
+    <input type="text" id="Role" name="Role"><br></center>
+    <br>
+    <br>
+  <center><label for ="Company"><text style="color: black;"></style>Company:</label><br>
+    <input type="text" id="Company" name="Company"><br></center>
+    <br>
+    <br>
+    <center><label for ="Location"><text style="color: black;"></style>Job Location:</label><br>
+      <input type="text" id="Location" name="Location"><br></center>
+      <br>
+      <br>
+    <center><label for ="College"><text style="color: black;"></style>University:</label><br>
+      <input type="text" id="College" name="College"><br></center>
+      <br>
+      <br>
+    <center><label for ="Hometown"><text style="color: black;"></style>Hometown:</label><br>
+      <input type="text" id="Hometown" name="Hometown"><br></center>
+      <br>
+      <br>
+    <center><label for ="Bio"><text style="color: black;"></style>Bio:</label><br>
+      <input type="text" id="Bio" name="Bio"><br></center>
+      <br>
+</form>
+
+<br>
+<center><button type ="button">Next</button></center>
+
+</body> 
+</html>
