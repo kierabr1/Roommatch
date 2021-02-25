@@ -13,6 +13,88 @@
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+<style>
+  h1 {
+    color: black;
+    font-family: verdana;
+    font-weight: bold;
+    font-size: 250%;
+    padding-bottom: 25px;
+  }
+  p {
+    font-size: 16px;
+    font-family: verdana;
+    color: black;
+    font-weight: normal;
+  }
+  h2 {
+    font-size:24px;
+    font-family: verdana;
+    color: black;
+    font-weight: bold;
+  }
+  .ai {
+    font-style:normal;
+    color:purple;
+    font-weight:bold;
+    font-size:24px;
+    line-height:24px;
+    margin: 5px;
+    padding: 10px 15px 12px;
+    border-radius: 4px;
+    display:inline-block;
+  
+}
+.ai.aries,.ai.taurus,.ai.gemini,.ai.cancer,.ai.leo,.ai.virgo,.ai.libra,.ai.scorpio,.ai.sagittarius,.ai.capricorn,.ai.aquarius,.ai.pisces {
+    font-weight:normal;
+}
+.ai.aries:before {
+    content:"\2648";
+  display:inline;
+  text-decoration:none;
+}
+.ai.taurus:before {
+    content:"\2649";
+}
+.ai.gemini:before {
+    content:"\264A";
+}
+.ai.cancer:before {
+    content:"\264B";
+}
+.ai.leo:before {
+    content:"\264C";
+}
+.ai.virgo:before {
+    content:"\264D";
+}
+.ai.libra:before {
+    content:"\264E";
+}
+.ai.scorpio:before {
+    content:"\264F";
+}
+.ai.sagittarius:before {
+    content:"\2650";
+}
+.ai.capricorn:before {
+    content:"\2651";
+}
+.ai.aquarius:before {
+    content:"\2652";
+}
+.ai.pisces:before {
+    content:"\2653";
+}
+
+.center {
+  text-align: center;
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+}
+  
+  </style>
 </head>
 <body>
   
@@ -35,5 +117,32 @@
 
 
 </script>
+<div class="center">
+  <h1>What's your Zodiac sign?</h1>
 
-<h1>Zodiac</h1>
+  <table style="width:100%">
+  
+    <tr>
+      <td><i class="ai aries"><h2>Aries</h2><p>Mar 21 - Apr 19</p></i></td>
+      <td><i class="ai taurus"><h2>Taurus</h2><p>Apr 20 - May 20</p></i></td>
+      <td><i class="ai gemini"><h2>Gemini</h2><p>May 21 - Jun 20</p></i></td>
+      <td><i class="ai cancer"><h2>Cancer</h2><p>Jun 21 - Jul 22</p></i></td>
+    </tr>
+    <tr>
+      <td><i class="ai leo"><h2>Leo</h2><p>Jul 23 - Aug 22</p></i></td>
+      <td><i class="ai virgo"><h2>Virgo</h2><p>Aug 23 - Sep 22</p></i></td>
+      <td><i class="ai libra"><h2>Libra</h2><p>Sep 23 - Oct 22</p></i></td>
+      <td><i class="ai scorpio"><h2>Scorpio</h2><p>Oct 23 - Nov 21</p></i></td>
+    </tr>
+    <tr>
+      <td><i class="ai sagittarius"><h2>Sagittarius</h2><p>Nov 22 - Dec 21</p></i></td>
+      <td><i class="ai capricorn"><h2>Capricorn</h2><p>Dec 22 - Jan 19</p></i></td>
+      <td><i class="ai aquarius"><h2>Aquarius</h2><p>Jan 20 - Feb 18</p></i></td>
+      <td><i class="ai pisces"><h2>Pisces</h2><p>Feb 19 - Mar 20</p></i></td>
+    </tr>
+  </table>
+  <button type="button">Next</button>
+</div>
+
+
+</body>
