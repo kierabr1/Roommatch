@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+</head>
+<body style = "background-color: maroon;">
+  
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCSjvdOHnxGcritY9tWh_eeMwr3O4lkl5s",
+    authDomain: "roommatchdb.firebaseapp.com",
+    projectId: "roommatchdb",
+    storageBucket: "roommatchdb.appspot.com",
+    messagingSenderId: "118545415683",
+    appId: "1:118545415683:web:da66f84fdf8e3c1e919836",
+    measurementId: "G-HZP0HSX96R"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  //window.setTimeout(
+  function signUpUser(){
+    let email = document.getElementById('email').value
+    let password = document.getElementById('password').value
+
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(e=>{
+      console.log(e)
+      document.getElementById('ErrorMsg').innerHTML = e;
+    })
+    //location = "infoScreen.html";
+  }//, 99000)
+
+  function redirectMe(){
+    location = "basicprofile.html";
+  }
+
+</script>
+
+    <center><h1 style="color: white;"> Welcome to RoomMatch! </h1></center>
+    <center><h2 style="color: white"> Register</h2></center>
+
+    <!--  
+    <div id="signUp">
+        <input type="email" name="email" placeholder="E-mail" id="Email">
+        <input type="password" name="pwd" placeholder="Password" id="Password">
+    
+    <a href="infoScreen.html"> 
+    <button onclick="signUpUser()">Register</button>
+    </a>
+  </div>
+  <div>
+    <span id="ErrorMsg"></span>
+  </div> -->
+  <div id="signUp">
+      <center><label for ="Email"><text style="color: white;"></style>Email:</label><br>
+      <input type="email" id="email" name="email" placeholder="E-mail"><br></center>
+    
+      <center><label for ="Password"><text style="color: white;"></style>Password:</label><br>
+      <input type="password" id="password" name="password" placeholder="Password"><br></center>
+    
+      <center><label for ="Re-Enter"><text style="color: white;"></style>Re-Enter Password:</label><br>
+      <input type="password" id="Re-Enter" name="Re-Enter" placeholder="Password"><br></center>
+    
+    <br> 
+    <center><button onclick="signUpUser()">Register</button></center> 
+    <center><a href="basicprofile.html"><button>Next</button></a></center> 
+ 
+  </div>
+
+    <div>
+        <span id="ErrorMsg"></span>
+    </div>
+</body> 
+</html>
