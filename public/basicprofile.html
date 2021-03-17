@@ -85,7 +85,6 @@
     var userUid = auth.currentUser.uid;
     var db = firebase.firestore();
 
-    let name = document.getElementById('FullName').value
     let age = document.getElementById('Age').value
     let major = document.getElementById('Major').value
     let job = document.getElementById('Role').value
@@ -108,7 +107,7 @@
       bio: bio
     }
 
-    db.collection('usersInfo').add(obj).then(doc=>{
+    db.collection('usersInfo').doc(userUid).add(obj).then(doc=>{
       console.log(doc.id)
     }).catch(e=>{
       console.log(e)

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+
+<style>
+    h1 {
+      color: maroon;
+      font-family: arial;
+      font-weight: bold;
+      font-size: 64px;
+      padding-bottom: 8px;
+    }
+    p {
+      font-size: 16px;
+      font-family: verdana;
+      color: black;
+      font-weight: normal;
+    }
+    h2 {
+      font-size:24px;
+      font-family: verdana;
+      color: black;
+      font-weight: bold;
+    }
+    </style>
+</head>
+<body style = "background-color: white;">
+    <center><h1 style="color: maroon;"> Connection Section! </h1></center>
+    <center><h2 style="color: black;"> Enter additional contact information to connect with potential roommates.</h2></center>
+    <center><h2 style="color: black;"> (Optional)</h2></center>
+
+
+<form>
+    <br>
+  <center><label for ="Phone Number"><text style="color: black;"></style>Phone Number:</label><br>
+  <input style="width:300px;font-size:14pt;" type="tel" id="PhoneNumber" name="PhoneNumber" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"><br></center>
+  <br>
+  <br>
+  <center><label for ="Personal Email Address"><text style="color: black;"></style>Personal Email Address:</label><br>
+  <input style="width:300px;font-size:14pt;" type="text" id="AltEmail" name="AltEmail"><br></center>
+  <br>
+  <br>
+  <center><label for ="Twitter"><text style="color: black;"></style>Twitter:</label><br>
+    <input style="width:300px;font-size:14pt;" type="text" id="Twitter" name="Twitter"><br></center>
+    <br>
+    <br>
+  <center><label for ="Instagram"><text style="color: black;"></style>Instagram:</label><br>
+    <input style="width:300px;font-size:14pt;" type="text" id="Instagram" name="Instagram"><br></center>
+    <br>
+    <br>
+  <center><label for ="Facebook"><text style="color: black;"></style>Facebook:</label><br>
+    <input style="width:300px;font-size:14pt;" type="text" id="Facebook" name="Facebook"><br></center>
+    <br>
+    <br>
+  <center><label for ="Linkedin"><text style="color: black;"></style>Linkedin:</label><br>
+    <input style="width:300px;font-size:14pt;" type="text" id="Linkedin" name="Linkedin"><br></center>
+    <br>
+</form>
+
+<center><button id="AddContact">Submit</button></center>
+<center><button>Submit</button></center>
+<br>
+<br>
+
+</body> 
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCSjvdOHnxGcritY9tWh_eeMwr3O4lkl5s",
+    authDomain: "roommatchdb.firebaseapp.com",
+    projectId: "roommatchdb",
+    storageBucket: "roommatchdb.appspot.com",
+    messagingSenderId: "118545415683",
+    appId: "1:118545415683:web:da66f84fdf8e3c1e919836",
+    measurementId: "G-HZP0HSX96R"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  var auth = firebase.auth();
+
+  document.getElementById('AddContact').addEventListener('click', addContact)
+
+  function addContact(){
+    var userUid = auth.currentUser.uid;
+    var db = firebase.firestore();
+
+    let number = document.getElementById('PhoneNumber').value
+    let altemail = document.getElementById('AltEmail').value
+    let twitter = document.getElementById('Twitter').value
+    let instagram = document.getElementById('Instagram').value
+    let facebook = document.getElementById('Facebook').value
+    let linkedin = document.getElementById('Linkedin').value
+
+    let optObj = {
+      userUid: userUid,
+      number: number,
+      altemail: altemail,
+      twitter: twitter,
+      instagram: instagram,
+      facebook: facebook,
+      linkedin: linkedin
+    }
+
+
+
+    db.collection('usersInfo').doc(userUid).collection("optional data").add(optObj).then(doc=>{
+      console.log(doc.id)
+    }).catch(e=>{
+      console.log(e)
+    })
+
+  }
+</script>
+</html>
+
