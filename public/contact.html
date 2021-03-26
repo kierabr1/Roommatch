@@ -116,11 +116,12 @@
 
 
 
-    db.collection('usersInfo').doc(userUid).collection("optional data").add(optObj).then(doc=>{
-      console.log(doc.id)
-    }).catch(e=>{
-      console.log(e)
-    })
+    db.collection('usersInfo').doc(userUid).collection('optInfo').doc("contact").set(optObj)
+    //.then(doc=>{
+    //  console.log(doc.id)
+    //}).catch(e=>{
+     // console.log(e)
+    //})
 
   }
 </script>

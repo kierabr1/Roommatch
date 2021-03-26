@@ -159,7 +159,7 @@
   }
 
   function addBorderTo(thisImage) {
-    thisImage.style.border = '4px solid #00f';
+    thisImage.style.border = '4px solid #000';
     selectedImg = thisImage.id;
     console.log(thisImage.id);
   }
@@ -183,10 +183,29 @@
   document.getElementById('AddZSbtn').addEventListener('click', addZodiac)
 
   function addZodiac(){
+
     var userUid = auth.currentUser.uid;
-    var db = firebase.firestore();
+    let db = firebase.firestore();
+    //let documentRefString = db.collection("usersInfo").doc(userUid).collection("info").doc(title.toString())
+    //let userRef = db.document(documentRefString.path)
     
-    db.collection('usersInfo').doc(userUid).add({zodiac: selectedImg});
-    console.log(this.collection.id);
-    }
+    //var db = firebase.firestore();
+    //var spec = db.collection('usersInfo').doc(userID).collection("info").id;
+    
+    var docRef = db.collection('usersInfo').doc(userUid).collection("info");
+    var doc =  docRef.get();
+    var docID = doc.uid
+    //console.log(doc.uid)
+
+    db.collection('usersInfo').doc(userUid).collection('info').doc('mainInfo').update({zodiac: selectedImg})
+  }
+    //.then(doc=>{
+    //  console.log(doc.id)
+    //}).catch(e=>{
+    //  console.log(e)
+    //})
+    //db.collection("usersInfo").where('unique', '==', userUid).get()
+    //  .then(db.collection('info').doc('mainInfo').update({zodiac: selectedImg}))
+    //}
+    
 </script>
