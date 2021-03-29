@@ -61,9 +61,8 @@
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     var auth = firebase.auth();
-    //TO: DO: 1) fix userUid 2) save img as userUid.jpg
     var userUid = auth.uid;
-    console.log(userUid)
+    //console.log(userUid)
 
     let storageRef = firebase.storage().ref();
 
