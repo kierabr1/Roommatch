@@ -70,7 +70,7 @@
 </form>
 
 <center><button id="AddContact">Submit</button></center>
-<center><button>Submit</button></center>
+<center><a href="profilepic.html"><button>Next</button></a></center>
 <br>
 <br>
 
@@ -117,11 +117,6 @@
 
 
     db.collection('usersInfo').doc(userUid).collection('optInfo').doc("contact").set(optObj)
-    //.then(doc=>{
-    //  console.log(doc.id)
-    //}).catch(e=>{
-     // console.log(e)
-    //})
 
   }
 </script>

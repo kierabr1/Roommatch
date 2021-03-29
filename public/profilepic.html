@@ -13,6 +13,8 @@
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-storage.js"></script>
+
 </head>
 <body style = "background-color: white;">
     
@@ -22,15 +24,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
 </head>
 <body>
     <center><label for="avatar">Choose a profile picture:</label></center>
@@ -38,7 +31,8 @@
     <br>
     <br>
     <br> 
-<center><input type="file"
+    <div id="filesubmit">
+<center><input type="file" class="file-select"
        id="avatar" name="avatar"
        accept="image/png, image/jpeg"></center>
 
@@ -46,9 +40,57 @@
 <br>
 <br>
 <br>  
-<center><button>Submit</button></center>
+<center><button class="file-submit">Submit</button></center>
 <br>
 <br>
-
+</div>
 </body> 
+<script>
+    
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyCSjvdOHnxGcritY9tWh_eeMwr3O4lkl5s",
+      authDomain: "roommatchdb.firebaseapp.com",
+      projectId: "roommatchdb",
+      storageBucket: "roommatchdb.appspot.com",
+      messagingSenderId: "118545415683",
+      appId: "1:118545415683:web:da66f84fdf8e3c1e919836",
+      measurementId: "G-HZP0HSX96R"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var auth = firebase.auth();
+    //TO: DO: 1) fix userUid 2) save img as userUid.jpg
+    var userUid = auth.uid;
+    console.log(userUid)
+
+    let storageRef = firebase.storage().ref();
+
+    document.querySelector('.file-select').addEventListener('change', handleFileUploadChange);
+    document.querySelector('.file-submit').addEventListener('click', handleFileUploadSubmit);
+    let selectedFile;
+
+    function handleFileUploadChange(e) {
+        selectedFile = e.target.files[0];
+    }
+
+    function handleFileUploadSubmit(e) {
+        //var userProfilePic = storageRef.child(`Profile/${userUid}.jpg`)
+        const uploadTask = storageRef.child(`Profile/${selectedFile.name}`).put(selectedFile); //create a child directory called images, and place the file inside this directory
+        uploadTask.on('state_changed', (snapshot) => {
+            // Observe state change events such as progress, pause, and resume
+        }, (error) => {
+            // Handle unsuccessful uploads
+            console.log(error);
+        }, () => {
+            // Do something once upload is complete
+            console.log('success');
+            var userUid = auth.currentUser.uid;
+            let db = firebase.firestore();
+            db.collection('usersInfo').doc(userUid).collection('info').doc('mainInfo').update({pic: selectedFile.name})
+        });
+    }
+      
+  </script>
 </html>

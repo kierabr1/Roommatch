@@ -13,11 +13,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
-<<<<<<< HEAD
-<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="/my_jquery.js"></script> !-->
-=======
->>>>>>> KieraBranch
+
 <style>
   h1 {
     color: maroon;
@@ -98,17 +94,12 @@
   width: 60%;
   padding: 10px;
 }
-<<<<<<< HEAD
 
 .active {
     border: 3px dotted brown;
 }
   
 </style>
-=======
-  
-  </style>
->>>>>>> KieraBranch
 </head>
 <body>
   
@@ -140,7 +131,7 @@
   </div>
   </table>
   <button id="AddZSbtn" type="button">Submit</button>
-  <a href="contact.html"><button>Next</button></a>
+  <a href="interests.html"><button>Next</button></a>
 </div>
 
 
@@ -202,18 +193,9 @@
     
     var docRef = db.collection('usersInfo').doc(userUid).collection("info");
     var doc =  docRef.get();
-    var docID = doc.uid
-    //console.log(doc.uid)
+    var docID = doc.uid;
 
     db.collection('usersInfo').doc(userUid).collection('info').doc('mainInfo').update({zodiac: selectedImg})
   }
-    //.then(doc=>{
-    //  console.log(doc.id)
-    //}).catch(e=>{
-    //  console.log(e)
-    //})
-    //db.collection("usersInfo").where('unique', '==', userUid).get()
-    //  .then(db.collection('info').doc('mainInfo').update({zodiac: selectedImg}))
-    //}
     
 </script>
