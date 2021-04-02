@@ -82,7 +82,9 @@
   document.getElementById('AddDatabtn').addEventListener('click', addData)
 
   function addData(){
+    //var userUid = null;
     var userUid = auth.currentUser.uid;
+    //var userID = auth.currentUser.getIdToken().then(data => console.log(data));
     var db = firebase.firestore();
 
     let name = document.getElementById('FullName').value
@@ -94,6 +96,8 @@
     let school = document.getElementById('College').value
     let hometown = document.getElementById('Hometown').value
     let bio = document.getElementById('Bio').value
+    let zodiac = null
+    let pic = null
 
     let obj = {
       userUid: userUid,
@@ -105,16 +109,18 @@
       location: location,
       school: school,
       hometown: hometown,
-      bio: bio
+      bio: bio,
+      zodiac: zodiac,
+      pic: pic
     }
 
-    db.collection('usersInfo').add(obj).then(doc=>{
-      console.log(doc.id)
-    }).catch(e=>{
-      console.log(e)
-    })
+   // db.collection('usersInfo').doc(userUid).collection("info").add(obj).then(doc=>{
+   //   console.log(doc.id)
+   // }).catch(e=>{
+   //   console.log(e)
+   // })
+    db.collection('usersInfo').doc(userUid).collection('info').doc('mainInfo').set(obj)
 
   }
 </script>
-<script src="app.js" defer> </script>
 </html>

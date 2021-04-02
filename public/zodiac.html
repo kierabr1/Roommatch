@@ -13,12 +13,157 @@
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+
+<style>
+  h1 {
+    color: maroon;
+    font-family: verdana;
+    font-weight: bold;
+    font-size: 250%;
+    padding-bottom: 25px;
+  }
+  p {
+    font-size: 16px;
+    font-family: verdana;
+    color: black;
+    font-weight: normal;
+  }
+  h2 {
+    font-size:24px;
+    font-family: verdana;
+    color: black;
+    font-weight: bold;
+  }
+  .ai {
+    font-style:normal;
+    color:purple;
+    font-weight:bold;
+    font-size:24px;
+    line-height:24px;
+    margin: 5px;
+    padding: 10px 15px 12px;
+    border-radius: 4px;
+    display:inline-block;
+  
+}
+.ai.aries,.ai.taurus,.ai.gemini,.ai.cancer,.ai.leo,.ai.virgo,.ai.libra,.ai.scorpio,.ai.sagittarius,.ai.capricorn,.ai.aquarius,.ai.pisces {
+    font-weight:normal;
+}
+.ai.aries:before {
+    content:"\2648";
+  display:inline;
+  text-decoration:none;
+}
+.ai.taurus:before {
+    content:"\2649";
+}
+.ai.gemini:before {
+    content:"\264A";
+}
+.ai.cancer:before {
+    content:"\264B";
+}
+.ai.leo:before {
+    content:"\264C";
+}
+.ai.virgo:before {
+    content:"\264D";
+}
+.ai.libra:before {
+    content:"\264E";
+}
+.ai.scorpio:before {
+    content:"\264F";
+}
+.ai.sagittarius:before {
+    content:"\2650";
+}
+.ai.capricorn:before {
+    content:"\2651";
+}
+.ai.aquarius:before {
+    content:"\2652";
+}
+.ai.pisces:before {
+    content:"\2653";
+}
+
+.center {
+  text-align: center;
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+}
+
+.active {
+    border: 3px dotted brown;
+}
+  
+</style>
 </head>
 <body>
   
-  <!-- TODO: User Login Button/Form-->
   
+<div class="center">
+  <h1>What's your Zodiac sign?</h1>
+
+  <table style="width:100%">
+  
+    
+    <tr>
+      <td><img class="zodiac" src="astro/aries.png" alt="Aries" style="width:50px;height:50px;" id="Aries"/><h2>Aries</h2><p>Mar 21 - Apr 19</p><br></td>
+      <td><img class="zodiac" src="astro/taurus.png" alt="Taurus" style="width:50px;height:50px;" id="Taurus"/><h2>Taurus</h2><p>Apr 20 - May 20</p><br></td>
+      <td><img class="zodiac" src="astro/gemini.png" alt="Gemini" style="width:50px;height:50px;" id="Gemini"/><h2>Gemini</h2><p>May 21 - Jun 20</p><br></td>
+      <td><img class="zodiac" src="astro/cancer.png" alt="Cancer" style="width:50px;height:50px;" id="Cancer"/><h2>Cancer</h2><p>Jun 21 - Jul 22</p><br></td>
+    </tr>
+    <tr>
+      <td><img class="zodiac" src="astro/leo.png" alt="Leo" style="width:50px;height:50px;" id="Leo"/><h2>Leo</h2><p>Jul 23 - Aug 22</p><br></td>
+      <td><img class="zodiac" src="astro/virgo.png" alt="Virgo" style="width:50px;height:50px;" id="Virgo"/><h2>Virgo</h2><p>Aug 23 - Sep 22</p><br></td>
+      <td><img class="zodiac" src="astro/libra.png" alt="Libra" style="width:50px;height:50px;" id="Libra" /><h2>Libra</h2><p>Sep 23 - Oct 22</p><br></td>
+      <td><img class="zodiac" src="astro/scorpio.png" alt="Scorpio" style="width:50px;height:50px;" id="Scorpio" /><h2>Scorpio</h2><p>Oct 23 - Nov 21</p><br></td>
+    </tr>
+    <tr>
+      <td><img class="zodiac" src="astro/sagittarius.png" alt="Sagittarius" style="width:50px;height:50px;" id="Sagittarius"/><h2>Sagittarius</h2><p>Nov 22 - Dec 21</p><br></td>
+      <td><img class="zodiac" src="astro/capricorn.png" alt="Capricorn" style="width:50px;height:50px;" id="Capricorn"/><h2>Capricorn</h2><p>Dec 22 - Jan 19</p><br></td>
+      <td><img class="zodiac" src="astro/aquarius.png" alt="Aquarius" style="width:50px;height:50px;" id="Aquarius"/><h2>Aquarius</h2><p>Jan 20 - Feb 18</p><br></td>
+      <td><img class="zodiac" src="astro/pisces.png" alt="Pisces" style="width:50px;height:50px;" id="Pisces"/><h2>Pisces</h2><p>Feb 19 - Mar 20</p><br></td>
+    </tr>
+  </div>
+  </table>
+  <button id="AddZSbtn" type="button">Submit</button>
+  <a href="interests.html"><button>Next</button></a>
+</div>
+
+
+</body>
+
 <script>
+  var imgs = document.getElementsByClassName("zodiac");
+  var cN = "active";
+  var selectedImg;
+  var imagesLen = imgs.length;
+
+  for ( var i = 0 ; i < imagesLen; i++) {
+    imgs[i].addEventListener('click', function () {
+      resetBorder();
+		  addBorderTo(this);
+    });
+  }
+
+// make a new loop for each click and reset images by it
+  function resetBorder() {
+    for (var v = 0; v < imagesLen; v++) {
+      imgs[v].style.border = '';
+    }
+  }
+
+  function addBorderTo(thisImage) {
+    thisImage.style.border = '4px solid #000';
+    selectedImg = thisImage.id;
+    console.log(thisImage.id);
+  }
+
+
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   var firebaseConfig = {
@@ -32,8 +177,25 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  var auth = firebase.auth();
 
+  document.getElementById('AddZSbtn').addEventListener('click', addZodiac)
 
+  function addZodiac(){
+
+    var userUid = auth.currentUser.uid;
+    let db = firebase.firestore();
+    //let documentRefString = db.collection("usersInfo").doc(userUid).collection("info").doc(title.toString())
+    //let userRef = db.document(documentRefString.path)
+    
+    //var db = firebase.firestore();
+    //var spec = db.collection('usersInfo').doc(userID).collection("info").id;
+    
+    var docRef = db.collection('usersInfo').doc(userUid).collection("info");
+    var doc =  docRef.get();
+    var docID = doc.uid;
+
+    db.collection('usersInfo').doc(userUid).collection('info').doc('mainInfo').update({zodiac: selectedImg})
+  }
+    
 </script>
-
-<h1>Zodiac</h1>
