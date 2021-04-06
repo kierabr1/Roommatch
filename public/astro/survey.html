@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+
+<style>
+    h1 {
+      color: maroon;
+      font-family: arial;
+      font-weight: bold;
+      font-size: 64px;
+      padding-bottom: 8px;
+    }
+    p {
+      font-size: 16px;
+      font-family: verdana;
+      color: black;
+      font-weight: normal;
+    }
+    h2 {
+      font-size:24px;
+      font-family: verdana;
+      color: black;
+      font-weight: bold;
+    }
+    </style>
+</head>
+<body style = "background-color: white;">
+    <center><h2 style="color: black;"> Religious Affiliation?</h2></center>
+
+    <center><form>
+        <input type="checkbox" id="chistrian" name="christian" value="Christian">
+        <label for="christian">Christianity</label><br>
+        <input type="checkbox" id="muslim" name="muslim" value="Muslim">
+        <label for="muslim">Islam</label><br>
+        <input type="checkbox" id="hindu" name="hindu" value="Hindu">
+        <label for="hindu">Hinduism</label><br>
+        <input type="checkbox" id="jewish" name="jewish" value="Jewish">
+        <label for="jewish">Juddaism</label><br>
+        <input type="checkbox" id="buddhist" name="buddhist" value="Buddhist">
+        <label for="buddhist">Buddhism</label><br>
+        <input type="checkbox" id="atheist" name="atheist" value="atheist">
+        <label for="atheist">Atheism</label><br>
+        <label for ="other1"><text style="color: black;"></style>Other:</label><br>
+            <input style="width:100px;font-size:14pt;" type="text" id="other1" name="other1"><br>
+
+    <center><h2 style="color: black;"> Political Affiliation?</h2></center>
+
+    <center><form>
+        <input type="checkbox" id="democrat" name="democrat" value="Democrat">
+        <label for="democrat"> Democratic Party</label><br>
+        <input type="checkbox" id="republican" name="republican" value="Republican">
+        <label for="republican"> Republican Party</label><br>
+        <input type="checkbox" id="independent" name="independent" value="Independent">
+        <label for="independent"> Independent</label><br>
+        <label for ="other2"><text style="color: black;"></style>Other:</label><br>
+            <input style="width:100px;font-size:14pt;" type="text" id="other2" name="other2"><br>
+    </form></center>
+
+<center><button>Submit</button></center>
+<br>
+<br>
+
+</body> 
+</html>
