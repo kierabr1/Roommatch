@@ -98,6 +98,8 @@
     let bio = document.getElementById('Bio').value
     let zodiac = null
     let pic = null
+    let political = null
+    let religion = null
 
     let obj = {
       userUid: userUid,
@@ -111,7 +113,9 @@
       hometown: hometown,
       bio: bio,
       zodiac: zodiac,
-      pic: pic
+      pic: pic,
+      political: political,
+      religion: religion
     }
 
    // db.collection('usersInfo').doc(userUid).collection("info").add(obj).then(doc=>{
