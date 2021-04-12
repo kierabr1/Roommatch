@@ -1,0 +1,132 @@
+<!-- TO DO
+        3. display
+        4. display profile
+        5. Contact page
+        6. edit info/add pics, toggle private/public info
+    -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        
+            <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+        
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-storage.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+          apiKey: "AIzaSyCSjvdOHnxGcritY9tWh_eeMwr3O4lkl5s",
+          authDomain: "roommatchdb.firebaseapp.com",
+          projectId: "roommatchdb",
+          storageBucket: "roommatchdb.appspot.com",
+          messagingSenderId: "118545415683",
+          appId: "1:118545415683:web:da66f84fdf8e3c1e919836",
+          measurementId: "G-HZP0HSX96R"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <head> 
+    </head>
+    <h1 id="name"></h1>
+    <h2 id="age"></h2>
+  <!-- <table style="width:100%" id="ex-table">
+    <tr id="tr">
+      <th>Profile Picture</th>
+      <th></th>
+  </table> !-->
+<div id="img" ></div>
+<body> <!-- FOR FRONTEND: just keep id's the same name-->
+    <span id="major"></span>, <span id="school"></span>
+    <span id="hometown"></span> | <span id="zodiac"></span>
+    <br>
+    <span id="job"></span>, <span id="company"></span>
+    <span id="bio"></span>
+    <br>
+    <br>
+    <span id="hobbies"></span>
+    <span id="religion"></span>
+    <span id="political"></span>
+</body>
+<a href="editInfo.html"><button id="editBtn">Edit</button></a>
+<a href="editContact.html"><button id="contactBtn">Contact</button></a>
+<script>
+    var auth = firebase.auth();
+    var profileDict = {};
+    var picRef;
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            var userUid = auth.currentUser.uid;
+            console.log(userUid);
+
+            let db = firebase.firestore();
+
+            var docRef = db.collection('usersInfo').doc(userUid).collection('info').doc('mainInfo');
+            docRef.get().then((doc) => {
+                if (doc.exists) {
+                    console.log("Document data:", doc.data());
+                    profileDict = doc.data();
+
+                    document.getElementById("name").innerHTML = (profileDict.name);
+                    document.getElementById("age").innerHTML = (profileDict.age);
+
+                    picRef = profileDict.pic;
+                    console.log(picRef);
+                    var storage = firebase.storage();
+                    var storageRef = storage.ref();
+                    var pathReference = storageRef.child(`Profile/${picRef}`);
+                    pathReference.getDownloadURL().then(function (url) {
+                        
+                        url = url + '.png'
+                        function displayImage(url) {
+                            let divLocation = document.getElementById("img");
+                            let imgElement = document.createElement("img");
+                            imgElement.src = url
+                            divLocation.append(imgElement);
+                        }
+                        console.log(url);
+                        displayImage(url)
+                    }).catch(function(error) {
+                        console.error(error);
+                    });
+                    document.getElementById("major").innerHTML = (profileDict.major);
+                    document.getElementById("school").innerHTML = (profileDict.school);
+                    document.getElementById("hometown").innerHTML = (profileDict.hometown);
+                    document.getElementById("zodiac").innerHTML = (profileDict.zodiac);
+
+                    document.getElementById("location").innerHTML = profileDict.location;
+                    document.getElementById("job").innerHTML = profileDict.job;
+                    document.getElementById("company").innerHTML = profileDict.company;
+
+                    document.getElementById("bio").innerHTML = profileDict.bio;
+
+                    document.getElementById("hobbies").innerHTML = profileDict.hobbies;
+                    document.getElementById("political").innerHTML = profileDict.political;
+                    document.getElementById("religion").innerHTML = profileDict.religion;
+                } else {
+                    // doc.data() will be undefined in this case
+                    console.log("No such document!");
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
+            } else {
+                console.log("useruid error")
+            }
+     });
+
+
+  </script>
+</body>
+  </html>
