@@ -17,7 +17,7 @@
 
 <style>
     h1 {
-      color: maroon;
+      color: black;
       font-family: arial;
       font-weight: bold;
       font-size: 40px;
@@ -38,19 +38,37 @@
     .button {
     background-color: white;
     padding: 14px 40px;
+    font-size: 22px;
+    height:100px;
+    width:200px;
     border-radius: 12px;
-    border: 2px solid maroon;
+    border: 2px solid black;
     color: black;
     }
 
     .button:visited {
-        background-color: maroon;
+        background-color: #5fa8d3;
         color: white;
     }
     
     .button:focus {
-        background-color: maroon;
+        background-color: #5fa8d3;
         color: white;
+    }
+
+    .button2 {
+      display: inline-block;
+      border-radius: 8px;
+      background-color: #5fa8d3;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 28px;
+      padding:12px 28px;
+      width: 200px;
+      transition: all 0.5s;
+      cursor: pointer;
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
     }
     .center {
     text-align: center;
@@ -61,12 +79,13 @@
 
     td {
         padding-bottom: 50px;
+
     }
     </style>
 </head>
 <body style = "background-color: white;">
 <div class="center">   
-<table style="width:100%">
+<center><table style="width:100%">
     <h1>What are your hobbies and interests?</h1>  
     <tr>
       <td><button class="button" id="hiking">Hiking</button><br></td>
@@ -86,12 +105,12 @@
       <td><button class="button" id="gaiming">Gaming</button><br></td>
       <td><button class="button" id="community service">Community Service</button><br></td>
     </tr>
-  </table>
+  </table></center>
   <br>
 <br>
 <br>
 <center><button id="AddHBSbtn" type="button">Submit</button></center>
-<a href="survey.html"><button>Next</button></a>
+<a href="survey.html"><button class ="button2">Next</button></a>
 
 </div>
 </body> 
