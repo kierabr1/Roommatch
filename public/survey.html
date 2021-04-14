@@ -15,11 +15,15 @@
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
 
 <style>
+
+  body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
     h1 {
-      color: maroon;
+      color: black;
       font-family: arial;
       font-weight: bold;
-      font-size: 64px;
+      /* font-size: 6px; */
       padding-bottom: 8px;
     }
     p {
@@ -34,53 +38,89 @@
       color: black;
       font-weight: bold;
     }
+    .center {
+      margin-left: auto;
+      width: 55%;
+      padding: 10px;
+    }
+
+    .button {
+      display: inline-block;
+      border-radius: 4px;
+      background-color: #5fa8d3;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 28px;
+      padding: 20px;
+      width: 200px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+
+    label{
+      font-size: 20px;
+    }
     </style>
 </head>
 <body style = "background-color: white;">
-    <center><h2 style="color: black;"> Religious Affiliation?</h2></center>
-
-    <center><form>
-        <input type="checkbox" id="chistrian" class="check" name="christian" value="Christian">
+    <center><h1 style="color: black;"> Religious Affiliation?</h2></center>
+    <div class="center">
+      <form>
+        <input type="radio" id="chistrian" class="check" name="christian" value="Christian">
         <label for="christian">Christianity</label><br>
-        <input type="checkbox" id="muslim" class="check" name="muslim" value="Muslim">
+        <br>
+        <input type="radio" id="muslim" class="check" name="muslim" value="Muslim">
         <label for="muslim">Islam</label><br>
-        <input type="checkbox" id="hindu" class="check" name="hindu" value="Hindu">
+        <br>
+        <input type="radio" id="hindu" class="check" name="hindu" value="Hindu">
         <label for="hindu">Hinduism</label><br>
-        <input type="checkbox" id="jewish" class="check" name="jewish" value="Jewish">
+        <br>
+        <input type="radio" id="jewish" class="check" name="jewish" value="Jewish">
         <label for="jewish">Juddaism</label><br>
-        <input type="checkbox" id="buddhist" class="check" name="buddhist" value="Buddhist">
+        <br>
+        <input type="radio" id="buddhist" class="check" name="buddhist" value="Buddhist">
         <label for="buddhist">Buddhism</label><br>
-        <input type="checkbox" id="atheist" class="check" name="atheist" value="atheist">
+        <br>
+        <input type="radio" id="atheist" class="check" name="atheist" value="atheist">
         <label for="atheist">Atheism</label><br>
-        <input type="checkbox" id="other" class="check" name="other" value="other">
+        <br>
+        <input type="radio" id="other" class="check" name="other" value="other">
         <label for="other">Other</label><br>
+        <br>
         <!-- <label for ="other"><text style="color: black;" id="other"></style>Other:</label><br>
             <input style="width:100px;font-size:14pt;" type="text" id="other" class="check" name="other1"><br> !-->
-    </form>
+      </form>
+    </div>
 
-    <center><h2 style="color: black;"> Political Affiliation?</h2></center>
+    <center><h1 style="color: black;"> Political Affiliation?</h2></center>
 
     <!-- <center><form>
         <input type="checkbox" id="democrat" class="check2" name="democrat" value="Democrat">
         <label for="democrat"> Democratic Party</label><br>
+        <br>
         <input type="checkbox" id="republican" class="check2" name="republican" value="Republican">
         <label for="republican"> Republican Party</label><br>
+        <br>
         <input type="checkbox" id="independent" class="check2" name="independent" value="Independent">
         <label for="independent"> Independent</label><br>
+        <br>
         <label for ="other2"><text style="color: black;"></style>Other:</label><br>
             <input style="width:100px;font-size:14pt;" type="text" id="other2" class="check2" name="other2"><br>
     </form></center> !-->
-    <table style="width:100%">
+    <!-- <table style="width:100%">
       <tr>
         <td><button class="button" id="democrat">Democrat Party</button><br></td>
         <td><button class="button" id="republican">Republican Party</button><br></td>
         <td><button class="button" id="independent">Independent</button><br></td>
         <td><button class="button" id="other">Other</button><br></td>
       </tr>
-    </table>
+    </table> -->
 
 <center><button id="AddInfobtn">Submit</button></center>
-<a href="contact.html"><button>Next</button></a>
+<center><a href="contact.html"><button class="button">Next</button></a></center>
 <br>
 <br>
 
