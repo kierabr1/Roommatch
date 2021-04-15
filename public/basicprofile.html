@@ -117,6 +117,22 @@
       political: political,
       religion: religion
     }
+    let objTOG = {
+      userUid: userUid,
+      name: true,
+      age: true,
+      major: true,
+      job: true,
+      company: true,
+      location: true,
+      school: true,
+      hometown: true,
+      bio: true,
+      zodiac: true,
+      pic: true,
+      political: true,
+      religion: true
+    }
 
    // db.collection('usersInfo').doc(userUid).collection("info").add(obj).then(doc=>{
    //   console.log(doc.id)
@@ -124,7 +140,7 @@
    //   console.log(e)
    // })
     db.collection('usersInfo').doc(userUid).collection('info').doc('mainInfo').set(obj)
-
+    db.collection('usersInfo').doc(userUid).collection('info').doc('mainInfoTOG').set(objTOG)
   }
 </script>
 </html>
