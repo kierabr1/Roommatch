@@ -15,8 +15,32 @@
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-storage.js"></script>
 
+<style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .button {
+      display: inline-block;
+      border-radius: 4px;
+      background-color: #5fa8d3;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 28px;
+      padding: 20px;
+      width: 200px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+
+    label {
+        font-size: 40px;
+    }
+  </style>
 </head>
-<body style = "background-color: white;">
     
 <!DOCTYPE html>
 <html lang="en">
@@ -39,9 +63,15 @@
 <br>
 <br>
 <br>
-<br>  
+<br>
+<center><label for ="Bio"><text style="color: black;"></style>Enter your Bio:</label><br>
+    <input style="width:300px;height:100px;font-size:14pt;" type="text" id="Bio" name="Bio"><br></center>
+<br>
+<br>
+<br>
+<br>    
 <center><button class="file-submit">Submit</button></center>
-<a href="home-reg.html"><button>Next</button></a>
+<center><a href="home-reg.html"><button class="button">Next</button></a></center>
 <br>
 <br>
 </div>
