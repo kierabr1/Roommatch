@@ -134,9 +134,20 @@
       linkedin: linkedin
     }
 
+    let optObjTOG = {
+      userUid: userUid,
+      number: true,
+      altemail: true,
+      twitter: true,
+      instagram: true,
+      facebook: true,
+      linkedin: true
+    }
+
 
 
     db.collection('usersInfo').doc(userUid).collection('optInfo').doc("contact").set(optObj)
+    db.collection('usersInfo').doc(userUid).collection('optInfo').doc("contactTOG").set(optObjTOG)
 
   }
 </script>
