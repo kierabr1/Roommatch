@@ -13,7 +13,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <style>
 
   body {
@@ -96,8 +96,8 @@
     </div>
 
     <center><h1 style="color: black;"> Political Affiliation?</h2></center>
-
-    <!-- <center><form>
+      <div class="center">
+    <form>
         <input type="checkbox" id="democrat" class="check2" name="democrat" value="Democrat">
         <label for="democrat"> Democratic Party</label><br>
         <br>
@@ -107,9 +107,9 @@
         <input type="checkbox" id="independent" class="check2" name="independent" value="Independent">
         <label for="independent"> Independent</label><br>
         <br>
-        <label for ="other2"><text style="color: black;"></style>Other:</label><br>
-            <input style="width:100px;font-size:14pt;" type="text" id="other2" class="check2" name="other2"><br>
-    </form></center> !-->
+        <input type="checkbox" id="other2" class="check2" name="other2" value="Other">
+        <label for="other"> Other</label><br>
+    </form> </div>
     <!-- <table style="width:100%">
       <tr>
         <td><button class="button" id="democrat">Democrat Party</button><br></td>
@@ -118,9 +118,11 @@
         <td><button class="button" id="other">Other</button><br></td>
       </tr>
     </table> -->
-
-<center><button id="AddInfobtn">Submit</button></center>
-<center><a href="contact.html"><button class="button">Next</button></a></center>
+<br>
+<br>
+<center><button id="AddInfobtn" class="button">Submit</button></center>
+<br>
+<center><a href="contact.html"><span style="color:black"><i class="fas fa-arrow-circle-right fa-4x"></i></a></center>
 <br>
 <br>
 
