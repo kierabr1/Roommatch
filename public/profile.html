@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+<style>
+  .sidenav {
+  height: 100%;
+  width: 180px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #eee;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #2196f3;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #111;
+}
+
+.img {
+    background-color: lightgrey;
+    width: 250px;
+    height: 350px;
+    border: 5px solid black;
+    padding: 50px;
+    margin: 20px;
+    border-radius: 25px;
+    margin-left: 20%;
+    margin-right: auto;
+}
+
+.smallpic {
+    background-color: lightgrey;
+    width: 40px;
+    height: 25px;
+    border: 5px solid black;
+    padding: 50px;
+    margin: 20px;
+    border-radius: 25px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+  </style>
+</head>
+<body>
+  
+  <!-- TODO: User Login Button/Form-->
+  
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCSjvdOHnxGcritY9tWh_eeMwr3O4lkl5s",
+    authDomain: "roommatchdb.firebaseapp.com",
+    projectId: "roommatchdb",
+    storageBucket: "roommatchdb.appspot.com",
+    messagingSenderId: "118545415683",
+    appId: "1:118545415683:web:da66f84fdf8e3c1e919836",
+    measurementId: "G-HZP0HSX96R"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+
+</script>
+    <!--
+<div class="sidenav"> messed with buttons
+  <div class="smallpic">Profile Pic Here</div>
+    <center><p>Name Here</p></center>
+    <br>
+    <br>
+    <a href="#about">About</a>
+    <a href="#intern">Internship</a>
+    <a href="morepics.html">Media</a>
+    <a href="#media">Contact</a>
+  </div>
+  <div class="pic">Profile Pic Here</div> -->
+  <a href="home-reg.html"><button id="editBtn">Back</button></a>
+  <h1 id="name"></h1>
+    <h2 id="age"></h2>
+<div id="img" ></div>
+<body> <!-- FOR FRONTEND: just keep id's the same name-->
+    <span id="major"></span>, <span id="school"></span>
+    <span id="hometown"></span> | <span id="zodiac"></span>
+    <br>
+    <span id="job"></span>, <span id="company"></span>
+    <span id="bio"></span>
+    <br>
+    <br>
+    <span id="hobbies"></span>
+    <span id="religion"></span>
+    <span id="political"></span>
+  </div>
+</body>
+<script>
+  var auth = firebase.auth();
+  var profileDict = {};
+  var picRef;
+  firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            var userUid = auth.currentUser.uid;
+            let db = firebase.firestore();
+            var docRef = db.collection('usersProfile').doc(userUid);
+
+            docRef.get().then((doc) => {
+                if (doc.exists) {
+                    //Picture Load
+                    console.log("Document data:", doc.data());
+                    profileDict = doc.data();
+                
+
+                    picRef = profileDict.pic;
+                    console.log(picRef);
+                    var storage = firebase.storage();
+                    var storageRef = storage.ref();
+                    var pathReference = storageRef.child(`Profile/${picRef}`);
+                    pathReference.getDownloadURL().then(function (url) {
+                        
+                        url = url + '.png' // TO DO:include jpg
+                        function displayImage(url) {
+                            let divLocation = document.getElementById("img");
+                            let imgElement = document.createElement("img");
+                            imgElement.src = url
+                            divLocation.append(imgElement);
+                        }
+                        console.log(url);
+                        displayImage(url)
+                    }).catch(function(error) {
+                        console.error(error);
+                    });
+
+                    document.getElementById("name").innerHTML = (profileDict.name);
+                    document.getElementById("age").innerHTML = (profileDict.age);
+                    document.getElementById("major").innerHTML = (profileDict.major);
+                    document.getElementById("school").innerHTML = (profileDict.school);
+                    document.getElementById("hometown").innerHTML = (profileDict.hometown);
+                    document.getElementById("zodiac").innerHTML = (profileDict.zodiac);
+
+                    document.getElementById("location").innerHTML = profileDict.location;
+                    document.getElementById("job").innerHTML = profileDict.job;
+                    document.getElementById("company").innerHTML = profileDict.company;
+
+                    document.getElementById("bio").innerHTML = profileDict.bio;
+
+                    document.getElementById("hobbies").innerHTML = profileDict.hobbies;
+                    document.getElementById("political").innerHTML = profileDict.political;
+                    document.getElementById("religion").innerHTML = profileDict.religion;
+                  } else {
+                    // doc.data() will be undefined in this case
+                    console.log("No such document!");
+                }
+              }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
+            } else {
+                console.log("useruid error")
+            }
+     });
+
+
+  </script>
+</html>

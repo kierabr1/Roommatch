@@ -100,6 +100,7 @@
     let pic = null
     let political = null
     let religion = null
+    let morePics = null
 
     let obj = {
       userUid: userUid,
@@ -115,7 +116,8 @@
       zodiac: zodiac,
       pic: pic,
       political: political,
-      religion: religion
+      religion: religion,
+      morePics: morePics
     }
     let objTOG = {
       userUid: userUid,
@@ -133,6 +135,29 @@
       political: true,
       religion: true
     }
+    let profileObj = {
+      userUid: userUid,
+      name: name,
+      age: null,
+      major: null,
+      job: null,
+      company: null,
+      location: null,
+      school: null,
+      hometown: null,
+      bio: null,
+      zodiac: null,
+      pic: pic,
+      political: null,
+      religion: null,
+      morePics: null,
+      number: null,
+      altemail: null,
+      twitter: null,
+      instagram: null,
+      facebook: null,
+      linkedin: null
+    }
 
    // db.collection('usersInfo').doc(userUid).collection("info").add(obj).then(doc=>{
    //   console.log(doc.id)
@@ -141,6 +166,7 @@
    // })
     db.collection('usersInfo').doc(userUid).collection('info').doc('mainInfo').set(obj)
     db.collection('usersInfo').doc(userUid).collection('info').doc('mainInfoTOG').set(objTOG)
+    db.collection('usersProfile').doc(userUid).set(obj)
   }
 </script>
 </html>
