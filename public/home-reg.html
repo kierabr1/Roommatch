@@ -100,7 +100,7 @@
     <a href="matching.html"><button id="editBtn">Find RoomMates</button></a>
     <h1 id="name"></h1>
     <h2 id="age"></h2>
-<div class="pic" id="img" ></div>
+<div id="img" ></div>
 <body> <!-- FOR FRONTEND: just keep id's the same name-->
     <span id="major"></span>, <span id="school"></span>
     <span id="hometown"></span> | <span id="zodiac"></span>
@@ -133,7 +133,7 @@
 
             var docRef = db.collection('usersInfo').doc(userUid).collection('info').doc('mainInfo');
             var togRef = db.collection('usersInfo').doc(userUid).collection('info').doc('mainInfoTOG');
-            //var profRef = db.collection('Profiles').doc(userUid);
+            var profRef = db.collection('Profiles').doc(userUid);
 
             docRef.get().then((doc) => {
                 if (doc.exists) {
