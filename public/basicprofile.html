@@ -13,7 +13,32 @@
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  h1{
+    font-size: 40px;
+  }
+  .button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #5fa8d3;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 15px;
+  width: 250px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+</style>
 </head>
 <body style = "background-color: white;">
     <center><h1 style="color: maroon;"> Tell us About Yourself! </h1></center>
@@ -60,7 +85,7 @@
 
 <br>
 <center><button id="AddDatabtn">Submit</button></center>
-<center><a href="zodiac.html"><button>Next</button></a></center> 
+<center><a href="zodiac.html"><span style="color:black"><i class="fas fa-arrow-circle-right fa-4x"></i></a></center> 
 
 </body> 
 <script>
@@ -98,6 +123,9 @@
     let bio = document.getElementById('Bio').value
     let zodiac = null
     let pic = null
+    let political = null
+    let religion = null
+    let morePics = null
 
     let obj = {
       userUid: userUid,
@@ -111,7 +139,49 @@
       hometown: hometown,
       bio: bio,
       zodiac: zodiac,
-      pic: pic
+      pic: pic,
+      political: political,
+      religion: religion,
+      morePics: morePics
+    }
+    let objTOG = {
+      userUid: userUid,
+      name: true,
+      age: true,
+      major: true,
+      job: true,
+      company: true,
+      location: true,
+      school: true,
+      hometown: true,
+      bio: true,
+      zodiac: true,
+      pic: true,
+      political: true,
+      religion: true
+    }
+    let profileObj = {
+      userUid: userUid,
+      name: name,
+      age: null,
+      major: null,
+      job: null,
+      company: null,
+      location: null,
+      school: null,
+      hometown: null,
+      bio: null,
+      zodiac: null,
+      pic: pic,
+      political: null,
+      religion: null,
+      morePics: null,
+      number: null,
+      altemail: null,
+      twitter: null,
+      instagram: null,
+      facebook: null,
+      linkedin: null
     }
 
    // db.collection('usersInfo').doc(userUid).collection("info").add(obj).then(doc=>{
@@ -120,7 +190,8 @@
    //   console.log(e)
    // })
     db.collection('usersInfo').doc(userUid).collection('info').doc('mainInfo').set(obj)
-
+    db.collection('usersInfo').doc(userUid).collection('info').doc('mainInfoTOG').set(objTOG)
+    db.collection('usersProfile').doc(userUid).set(obj)
   }
 </script>
 </html>

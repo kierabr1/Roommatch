@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        
+            <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+        
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-storage.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+          apiKey: "AIzaSyCSjvdOHnxGcritY9tWh_eeMwr3O4lkl5s",
+          authDomain: "roommatchdb.firebaseapp.com",
+          projectId: "roommatchdb",
+          storageBucket: "roommatchdb.appspot.com",
+          messagingSenderId: "118545415683",
+          appId: "1:118545415683:web:da66f84fdf8e3c1e919836",
+          measurementId: "G-HZP0HSX96R"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+<style>
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+    
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+    
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+    
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+    
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+    
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+    
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+    
+    .slider.round:before {
+      border-radius: 50%;
+    }
+    </style>
+  <head> 
+  </head>
+  <h1>Contact</h1>
+  <body> <!-- FOR FRONTEND: just keep id's the same name-->
+
+    <a href="morepics.html"><button>Add More Pics</button></a>
+    <table>
+      <tr><td id="name"><div contenteditable> </div></td>
+        <td><label class="switch">
+        <input type="checkbox" id="nameT">
+        <span class="slider round"></span>
+      </label></td></tr>
+      <tr></tr><td id="age"><div contenteditable> </div></td>
+        <td><label class="switch">
+        <input type="checkbox" id="ageT">
+        <span class="slider round"></span>
+      </label></td></tr>
+      <tr></tr><td id="major"><div contenteditable> </div></td>
+      <td><label class="switch">
+        <input type="checkbox" id="majorT">
+        <span class="slider round"></span>
+      </label></td></tr>
+      <tr></tr><td id="role"><div contenteditable> </div></td>
+      <td><label class="switch">
+        <input type="checkbox" id="roleT">
+        <span class="slider round"></span>
+      </label></td></tr>
+      <tr></tr><td id="company"><div contenteditable> </div></td>
+      <td><label class="switch">
+        <input type="checkbox" id="companyT">
+        <span class="slider round"></span>
+      </label></td></tr>
+      <tr></tr><td id="location"><div contenteditable> </div></td>
+      <td><label class="switch">
+        <input type="checkbox" id="locationT">
+        <span class="slider round"></span>
+      </label></td></tr>
+      <tr></tr><td id="college"><div contenteditable> </div></td>
+      <td><label class="switch">
+        <input type="checkbox" id="collegeT">
+        <span class="slider round"></span>
+      </label></td></tr>
+      <tr></tr><td id="hometown"><div contenteditable> </div></td>
+      <td><label class="switch">
+        <input type="checkbox" id="hometownT">
+        <span class="slider round"></span>
+      </label></td></tr>
+      <tr></tr><td id="bio"><div contenteditable> </div></td>
+      <td><label class="switch">
+        <input type="checkbox" id="bioT">
+        <span class="slider round"></span>
+      </label></td></tr>
+      <tr></tr><td id="zodiac"><div contenteditable> </div></td>
+      <td><label class="switch">
+        <input type="checkbox" id="zodiacT">
+        <span class="slider round"></span>
+      </label></td></tr>
+      <tr></tr><td id="political"><div contenteditable> </div></td>
+      <td><label class="switch">
+        <input type="checkbox" id="politicalT">
+        <span class="slider round"></span>
+      </label></td></tr>
+      <tr></tr><td id="religion"><div contenteditable> </div></td>
+      <td><label class="switch">
+        <input type="checkbox" id="religionT">
+        <span class="slider round"></span>
+      </label></td></tr>
+      </table>
+
+      <a href="home-reg.html"><button id="BackBtn">Back</button></a>
+      <button id="saveBtn">Save</button></a>
+    </body>
+
+  <script>
+    var auth = firebase.auth();
+    var editDict = {};
+    var toggleDict = {};
+    var picRef;
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+          var userUid = auth.currentUser.uid;
+          console.log(userUid);
+
+          let db = firebase.firestore();
+
+          var togRef = db.collection('usersInfo').doc(userUid).collection('info').doc('mainInfoTOG');
+          togRef.get().then((doc1) => {
+              if (doc1.exists) {
+                  console.log("Document data:", doc1.data());
+                  toggle = doc1.data();
+
+                  Object.keys(toggle).forEach(function(key) {
+                    if (toggle[key] == true) {
+                      document.getElementById(key).checked == true;
+                    } else {
+                      document.getElementById(key).checked = false;
+                    }
+                    
+                  });
+              }
+              }).catch((error) => {
+              console.log("Error getting document:", error);
+          });
+
+
+          var docRef = db.collection('usersInfo').doc(userUid).collection('info').doc('mainInfo');
+          
+          docRef.get().then((doc) => {
+              if (doc.exists) {
+                  console.log("Document data:", doc.data());
+                  editDict = doc.data();
+
+
+                  document.getElementById("name").innerHTML = (editDict.name);
+                  document.getElementById("age").innerHTML = (editDict.age);
+
+                
+                  document.getElementById("major").innerHTML = (editDict.major);
+                  document.getElementById("role").innerHTML = (editDict.job);
+                  document.getElementById("company").innerHTML = (editDict.company);
+                  document.getElementById("location").innerHTML = (editDict.location);
+                  document.getElementById("school").innerHTML = (editDict.school);
+                  document.getElementById("hometown").innerHTML = (editDict.hometown);
+                  document.getElementById("bio").innerHTML = (editDict.bio);
+                  document.getElementById("zodiac").innerHTML = (editDict.zodiac);
+                  document.getElementById("political").innerHTML = (editDict.political);
+                  document.getElementById("religion").innerHTML = (editDict.religion);
+
+              } 
+              // Toggle
+
+              else {
+                  // doc.data() will be undefined in this case
+                  console.log("No such document!");
+              }
+          }).catch((error) => {
+              console.log("Error getting document:", error);
+          });
+
+          // TOggle
+          for (let tog in toggleDict) {
+            for (let con in editDict) {
+
+            }
+          }
+          document.getElementById('saveBtn').addEventListener('click', updateProfile)
+          function updateProfile(){
+            let name = document.getElementById('name').value
+            let age = document.getElementById('age').value
+            let major = document.getElementById('major').value
+            let job = document.getElementById('role').value
+            let company = document.getElementById('company').value
+            let location = document.getElementById('location').value
+            let school = document.getElementById('college').value
+            let hometown = document.getElementById('Hhmetown').value
+            let bio = document.getElementById('bio').value
+            let zodiac = document.getElementById("zodiac").value
+            let political = document.getElementById("political").value
+            let religion = document.getElementById("religion")
+
+            let toggle = document.getElementsByClassName('switch');
+            let nameTOG = toggle[0].innerHTML;
+            let ageTOG = toggle[1].innerHTML;
+            let majorTOG = toggle[2].innerHTML;
+            let jobTOG = toggle[3].innerHTML;
+            let compTOG = toggle[4].innerHTML;
+            let locTOG = toggle[5].innerHTML;
+            let schoolTOG = toggle[6].innerHTML;
+            let homeTOG = toggle[7].innerHTML;
+            let bioTOG = toggle[8].innerHTML;
+            let zodiacTOG = toggle[9].innerHTML;
+            let polTOG = toggle[10].innerHTML;
+            let relTOG = toggle[11].innerHTML;
+
+
+            let infoTOG = {
+              name: nameTOG,
+              age: ageTOG,
+              major: majorTOG,
+              job: jobTOG,
+              company: compTOG,
+              location: locTOG,
+              school: schoolTOG,
+              hometown: homeTOG,
+              bio: bioTOG,
+              zodiac: zodiacTOG,
+              political: polTOG,
+              religion: relTOG
+            }
+
+            db.collection('usersInfo').doc(userUid).collection('info').doc("mainInfoTOG").update(infoTOG);
+            db.collection('usersInfo').doc(userUid).collection('info').doc('mainInfo').update({name: name,
+                                                                                                    age: age,
+                                                                                                    major: major,
+                                                                                                    job: job,
+                                                                                                    company: company,
+                                                                                                    location: location,
+                                                                                                    school: school,
+                                                                                                    hometown: hometown,
+                                                                                                    bio: bio,
+                                                                                                    zodiac: zodiac,
+                                                                                                    political: political,
+                                                                                                    religion: religion});
+                                                                                          
+          }
+          } else {
+              console.log("useruid error")
+          }
+   });
+
+    </script>
+  </body>
+  </html>

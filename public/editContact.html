@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        
+            <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+        
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-storage.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+          apiKey: "AIzaSyCSjvdOHnxGcritY9tWh_eeMwr3O4lkl5s",
+          authDomain: "roommatchdb.firebaseapp.com",
+          projectId: "roommatchdb",
+          storageBucket: "roommatchdb.appspot.com",
+          messagingSenderId: "118545415683",
+          appId: "1:118545415683:web:da66f84fdf8e3c1e919836",
+          measurementId: "G-HZP0HSX96R"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <style>
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+      
+      .switch input { 
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+      
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+      
+      input:checked + .slider {
+        background-color: #2196F3;
+      }
+      
+      input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+      }
+      
+      input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+      
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 34px;
+      }
+      
+      .slider.round:before {
+        border-radius: 50%;
+      }
+      </style>
+    <head> 
+    </head>
+    <h1>Contact</h1>
+    <body> <!-- FOR FRONTEND: just keep id's the same name-->
+      <table>
+        <tr><td id="altemail"><div contenteditable> </div></td>
+          <td><label class="switch">
+          <input type="checkbox" id="altemailT">
+          <span class="slider round"></span>
+        </label></td></tr>
+        <tr></tr><td id="number"><div contenteditable> </div></td>
+          <td><label class="switch">
+          <input type="checkbox" id="numberT">
+          <span class="slider round"></span>
+        </label></td></tr>
+        <tr></tr><td id="fb"><div contenteditable> </div></td>
+        <td><label class="switch">
+          <input type="checkbox" id="fbT">
+          <span class="slider round"></span>
+        </label></td></tr>
+        <tr></tr><td id="ig"><div contenteditable> </div></td>
+        <td><label class="switch">
+          <input type="checkbox" id="igT">
+          <span class="slider round"></span>
+        </label></td></tr>
+        <tr></tr><td id="li"><div contenteditable> </div></td>
+        <td><label class="switch">
+          <input type="checkbox" id="liT">
+          <span class="slider round"></span>
+        </label></td></tr>
+        <tr></tr><td id="twitter"><div contenteditable> </div></td>
+        <td><label class="switch">
+          <input type="checkbox" id="twitterT">
+          <span class="slider round"></span>
+        </label></td></tr>
+        </table>
+    </body>
+    <a href="home-reg.html"><button id="BackBtn">Back</button></a>
+    <button id="saveBtn">Save</button></a>
+    <script>
+      var auth = firebase.auth();
+      var contactDict = {};
+      var toggleDict = {};
+      var picRef;
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            var userUid = auth.currentUser.uid;
+            console.log(userUid);
+
+            let db = firebase.firestore();
+
+            var togRef = db.collection('usersInfo').doc(userUid).collection('optInfo').doc('contactTOG');
+            togRef.get().then((doc1) => {
+                if (doc1.exists) {
+                    console.log("Document data:", doc1.data());
+                    toggle = doc1.data();
+
+                    Object.keys(toggle).forEach(function(key) {
+                      if (toggle[key] == true) {
+                        document.getElementById(key).checked == true;
+                      } else {
+                        document.getElementById(key).checked = false;
+                      }
+                      
+                    });
+                }
+                }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
+
+
+            var docRef = db.collection('usersInfo').doc(userUid).collection('optInfo').doc('contact');
+            
+            docRef.get().then((doc) => {
+                if (doc.exists) {
+                    console.log("Document data:", doc.data());
+                    contactDict = doc.data();
+
+
+                    document.getElementById("altemail").innerHTML = (contactDict.altemail);
+                    document.getElementById("fb").innerHTML = (contactDict.facebook);
+
+                  
+                    document.getElementById("ig").innerHTML = (contactDict.instagram);
+                    document.getElementById("li").innerHTML = (contactDict.linkedin);
+                    document.getElementById("number").innerHTML = (contactDict.number);
+                    document.getElementById("twitter").innerHTML = (contactDict.twitter);
+
+                } 
+                // Toggle
+
+                else {
+                    // doc.data() will be undefined in this case
+                    console.log("No such document!");
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
+
+            // TOggle
+            for (let tog in toggleDict) {
+              for (let con in contactDict) {
+
+              }
+            }
+            document.getElementById('saveBtn').addEventListener('click', updateContact)
+            function updateContact(){
+              let altemail = document.getElementById('altemail').value
+              let fb = document.getElementById('fb').value
+              let ig = document.getElementById('ig').value
+              let li = document.getElementById('li').value
+              let num = document.getElementById('number').value
+              let twitter = document.getElementById('twitter').value
+
+              let toggle = document.getElementsByClassName('switch');
+              let altemTOG = toggle[0].innerHTML;
+              let numTOG = toggle[1].innerHTML;
+              let fbTOG = toggle[2].innerHTML;
+              let igTOG = toggle[3].innerHTML;
+              let liTOG = toggle[4].innerHTML;
+              let twTOG = toggle[5].innerHTML;
+
+              let optObjTOG = {
+                userUid: userUid,
+                number: numTOG,
+                altemail: fbTOG,
+                twitter: twTOG,
+                instagram: igTOG,
+                facebook: fbTOG,
+                linkedin: liTOG
+              }
+
+              db.collection('usersInfo').doc(userUid).collection('optInfo').doc("contactTOG").update(optObjTOG);
+              db.collection('usersInfo').doc(userUid).collection('optInfo').doc('contact').update({altemail: altemail,
+                                                                                                  facebook: fb,
+                                                                                                  instagram: ig,
+                                                                                                  linkedin: li,
+                                                                                                  number: num,
+                                                                                                  twitter: twitter});
+                                                                                            
+            }
+            } else {
+                console.log("useruid error")
+            }
+     });
+
+      </script>
+    </body>
+    </html>
+    
